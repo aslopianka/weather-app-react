@@ -1,0 +1,15 @@
+h2 {
+    text-align: center;
+  }
+  
+.SearchEngine {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+  }
+  
+.WeatherInfo {
+    list-style-type: none;
+    text-align: center;
+  }
+  
