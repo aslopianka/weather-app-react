@@ -52,6 +52,7 @@ export default function Weather() {
             <li> Humidity: {humidity}% </li>
           </ul>
         </div>
+       <span> <a href="https://github.com/aslopianka/weather-app-react"> openSourceCode </a> by Anna Slopianka </span>
       </div>
     );
   }
