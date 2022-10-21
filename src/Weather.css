@@ -1,12 +1,11 @@
-h2 {
+.Weather{
+  border: 1px solid black;
+  margin-top: 30px;
+}
+.Weather h2 {
     text-align: center;
   }
-  
-.SearchEngine {
-    margin-top: 45px;
-    display: flex;
-    justify-content: center;
-  }
+
   
 .WeatherInfo {
     list-style-type: none;

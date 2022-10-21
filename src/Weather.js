@@ -30,19 +30,24 @@ export default function Weather() {
     }
   
     return (
-      <div className="Search">
-        <div className="SearchEngine">
+      <div className="Weather">
+      
+        <div className="SearchEngine row">
           <form onSubmit={handleSumit}>
+            <div className="col-9 form-control">
             <input
               onChange={handleChange}
               type="search"
               placeholder="Enter city"
               autoFocus="on"
               id="city-input"
-            />
-            <input type="submit" value="Search" />
+              />
+              </div>
+              <div className="col-3">
+            <input type="submit" value="Search" className="btn btn-primary" />
+            </div>
           </form>
-        </div>
+          </div>
         {!!uiCity && <h2>{uiCity}</h2>} 
   {/* {uiCity &&} is if statement && meaning if uiCity is "true"then render h2, !!  */}
         <div>
