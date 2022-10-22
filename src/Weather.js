@@ -31,33 +31,51 @@ export default function Weather() {
   
     return (
       <div className="Weather">
-      
-        <div className="SearchEngine row">
+      <div className="box">
           <form onSubmit={handleSumit}>
-            <div className="col-9 form-control">
+        <div className="row">
+            <div className="col-9">
             <input
               onChange={handleChange}
               type="search"
               placeholder="Enter city"
               autoFocus="on"
               id="city-input"
+              className="form-control"
               />
               </div>
               <div className="col-3">
             <input type="submit" value="Search" className="btn btn-primary" />
             </div>
-          </form>
           </div>
-        {!!uiCity && <h2>{uiCity}</h2>} 
-  {/* {uiCity &&} is if statement && meaning if uiCity is "true"then render h2, !!  */}
-        <div>
-          <ul className="WeatherInfo">
-            <li> Temperature: {Math.round(temperature)} °C </li>
-            <li> Description: {description} </li>
-            <li> Humidity: {humidity}% </li>
-          </ul>
+          </form>
+      <div className="row">
+<div className="col-4 mt-5 d-flex rightPanel">
+{!!uiCity && <h2>{uiCity}</h2>} 
+  {/* {uiCity &&} is if statement && meaning if uiCity is "true" then render h2, !! important for some reason     */}
+<h6>Saturday, 22.10.2022</h6>
+<div className="temperature mt-5">
+{Math.round(temperature)} °C
+</div>
+</div>
+<div className="col-8 d-flex leftPanel">
+<div className="icon">
+<img src="/" alt="current weather icon" />
+</div>
+<div className="description">
+<p>{description}</p>
+</div>
+
+</div>
         </div>
-       <span> <a href="https://github.com/aslopianka/weather-app-react" target="-blank"> openSourceCode </a> by Anna Slopianka </span>
+        </div>
+<div className="additionalWeatherInfo">
+          <ul>
+            <li> Humidity: {humidity}% </li>
+            <li> Windspeed: 13 km/h </li>
+          </ul>
+          </div>
+        <span> <a href="https://github.com/aslopianka/weather-app-react" target="-blank"> openSourceCode </a> by Anna Slopianka </span>
       </div>
     );
   }
