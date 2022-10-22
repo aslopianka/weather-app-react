@@ -1,39 +1,41 @@
-.box{
-  border: 1px solid #DEDEDE;
+.box {
+  border: 1px solid #dedede;
   border-radius: 5px;
   margin-top: 30px;
-  box-shadow: 8px 12px 12px -1px #DEDEDE;
+  box-shadow: 8px 12px 12px -1px #dedede;
   padding: 25px;
-
-
 }
-  
+
 .Weather ul {
   padding-top: 20px;
-    list-style-type: none;
-    text-align: center;
-  }
+  list-style-type: none;
+  text-align: center;
+}
 
-.rightPanel{
+.rightPanel {
   flex-direction: column;
-  align-content: center ;
+  align-content: center;
+  text-align: center;
 }
 
-.rightPanel h2{
-font-size: 30px;  
-text-align: center;  
-    
+.rightPanel h2 {
+  font-size: 30px;
+  text-align: center;
 }
-.rightPanel h6{
+.rightPanel h6 {
   font-size: 15px;
 }
-
-.temperature {
-  font-size: 80px;
-  font-weight: bold;
+.rightPanel .units {
+  font-size: 18px;
+  font-weight: 300;
 }
 
-.leftPanel{
+.rightPanel .temperature {
+  font-size: 80px;
+  font-weight: 600;
+}
+
+.leftPanel {
   margin-top: 50px;
   justify-content: center;
   flex-direction: column;

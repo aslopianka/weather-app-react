@@ -1,8 +1,4 @@
-.App {
-  text-align: center;
-  
-}
-
 .App .container {
-  width: 70%;
+  max-width: 750px;
+  margin: 50px auto;
 }
