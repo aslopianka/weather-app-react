@@ -6,12 +6,6 @@
   padding: 25px;
 }
 
-.Weather ul {
-  padding-top: 20px;
-  list-style-type: none;
-  text-align: center;
-}
-
 .leftPanel {
   flex-direction: column;
   align-content: center;
@@ -54,4 +48,12 @@
 
 .icon {
   justify-content: center;
+}
+
+.Weather ul {
+  padding-top: 20px;
+  list-style-type: none;
+  text-align: center;
+  line-height: 3;
+  font-size: 20px;
 }

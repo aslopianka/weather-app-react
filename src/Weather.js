@@ -12,7 +12,7 @@ export default function Weather() {
   let [icon, setIcon] = useState(null);
 
   function showWeather(response) {
-    console.log(response.data.weather.icon);
+    console.log(response);
     // all this should be in one object
     setTemperature(response.data.main.temp);
     setDescription(response.data.weather[0].description);
@@ -62,17 +62,14 @@ export default function Weather() {
             </div>
           </div>
           <div className="col-8 d-flex rightPanel">
-            {/* <div className="icon d-felx"> */}
             <img
               src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               alt="current weather icon"
               width={200}
               height={200}
             />
-            {/* </div> */}
-            {/* <div> */}
+
             <p className="description">{description}</p>
-            {/* </div> */}
           </div>
         </div>
       </div>
@@ -80,9 +77,9 @@ export default function Weather() {
         <ul>
           <li> Humidity: {humidity}% </li>
           <li> Windspeed: 13 km/h </li>
-          <li> Windspeed: 13 km/h </li>
-          <li> Windspeed: 13 km/h </li>
-          <li> Windspeed: 13 km/h </li>
+          <li> Wind degree </li>
+          <li> Temp min 5 </li>
+          <li> Temp max : 35 </li>
         </ul>
       </div>
       <span>
