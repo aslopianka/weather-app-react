@@ -12,35 +12,46 @@
   text-align: center;
 }
 
-.rightPanel {
+.leftPanel {
   flex-direction: column;
   align-content: center;
   text-align: center;
 }
 
-.rightPanel h2 {
+.leftPanel h2 {
   font-size: 30px;
   text-align: center;
 }
-.rightPanel h6 {
+.leftPanel h6 {
   font-size: 15px;
 }
-.rightPanel .units {
+.leftPanel .units {
   font-size: 18px;
   font-weight: 300;
 }
 
-.rightPanel .temperature {
-  font-size: 80px;
-  font-weight: 600;
+.leftPanel .temperature {
+  font-size: 90px;
+  font-weight: 500;
 }
 
-.leftPanel {
+.rightPanel {
   margin-top: 50px;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
-.leftPanel .description p {
+.rightPanel .description p {
   font-size: 20px;
+}
+
+.units {
+  position: relative;
+  top: -45px;
+  margin-left: 5px;
+}
+
+.icon {
+  justify-content: center;
 }

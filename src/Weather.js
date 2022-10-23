@@ -9,13 +9,15 @@ export default function Weather() {
   let [humidity, setHumidity] = useState(null);
   let [city, setCity] = useState(null);
   let [uiCity, setuiCity] = useState(null);
+  let [icon, setIcon] = useState(null);
 
   function showWeather(response) {
-    // console.log(response);
+    console.log(response.data.weather.icon);
     // all this should be in one object
     setTemperature(response.data.main.temp);
     setDescription(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
+    setIcon(response.data.weather[0].icon);
   }
   function handleSumit(event) {
     event.preventDefault();
@@ -50,21 +52,27 @@ export default function Weather() {
           </div>
         </form>
         <div className="row">
-          <div className="col-4 mt-5 d-flex rightPanel">
+          <div className="col-4 mt-5 d-flex leftPanel">
             {!!uiCity && <h2>{uiCity}</h2>}
             {/* {uiCity &&} is if statement && meaning if uiCity is "true" then render h2, !! important for some reason     */}
             <h6>Saturday, 22.10.2022</h6>
-            <div className="temperature mt-5">
-              <span>{Math.round(temperature)}°</span>
+            <div className="temperature mt-4">
+              <span>{Math.round(temperature)}</span>
+              <span className="units">°C|F</span>
             </div>
           </div>
-          <div className="col-8 d-flex leftPanel">
-            <div className="icon">
-              <img src="/" alt="current weather icon" />
-            </div>
-            <div className="description">
-              <p>{description}</p>
-            </div>
+          <div className="col-8 d-flex rightPanel">
+            {/* <div className="icon d-felx"> */}
+            <img
+              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+              alt="current weather icon"
+              width={150}
+              height={200}
+            />
+            {/* </div> */}
+            {/* <div> */}
+            <p className="description">{description}</p>
+            {/* </div> */}
           </div>
         </div>
       </div>
