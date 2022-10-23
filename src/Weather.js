@@ -66,7 +66,7 @@ export default function Weather() {
             <img
               src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               alt="current weather icon"
-              width={150}
+              width={200}
               height={200}
             />
             {/* </div> */}
@@ -76,9 +76,12 @@ export default function Weather() {
           </div>
         </div>
       </div>
-      <div className="additionalWeatherInfo">
+      <div className="additionalWeatherInfo mt-5">
         <ul>
           <li> Humidity: {humidity}% </li>
+          <li> Windspeed: 13 km/h </li>
+          <li> Windspeed: 13 km/h </li>
+          <li> Windspeed: 13 km/h </li>
           <li> Windspeed: 13 km/h </li>
         </ul>
       </div>
