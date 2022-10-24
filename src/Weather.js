@@ -90,7 +90,8 @@ export default function Weather() {
           {/* <li> Wind degree: {weather.winddegree}° </li> */}
         </ul>
       </div>
-      <span>
+      {/* contact link needs improvement still */}
+      <span className="contactLink">
         {" "}
         <a
           href="https://github.com/aslopianka/weather-app-react"
@@ -99,7 +100,10 @@ export default function Weather() {
           {" "}
           openSourceCode{" "}
         </a>{" "}
-        by Anna Slopianka{" "}
+        by{" "}
+        <a href="https://unrivaled-gaufre-1be69a.netlify.app" target="-blank">
+          Anna Slopianka
+        </a>{" "}
       </span>
     </div>
   );
