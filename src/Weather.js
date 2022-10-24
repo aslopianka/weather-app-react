@@ -71,8 +71,8 @@ export default function Weather() {
             <img
               src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               alt="current weather icon"
-              width={200}
-              height={200}
+              // width={200}
+              // height={200}
             />
 
             <p className="description">{weather.description}</p>

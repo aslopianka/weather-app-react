@@ -68,3 +68,23 @@
 .contactLink a {
   color: #424b5a;
 }
+
+@media only screen and (min-width: 800px) {
+  img {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .Weather ul {
+    line-height: 2;
+  }
+  .additionalWeatherInfo {
+    display: block;
+  }
+  .rightPanel img {
+    width: 150px;
+    height: 150px;
+  }
+}
