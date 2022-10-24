@@ -57,3 +57,10 @@
   line-height: 3;
   font-size: 20px;
 }
+
+.additionalWeatherInfo {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

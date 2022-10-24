@@ -4,19 +4,25 @@ import "./Weather.css";
 import axios from "axios";
 
 export default function Weather() {
-  let [temperature, setTemperature] = useState(null);
-  let [description, setDescription] = useState(null);
-  let [humidity, setHumidity] = useState(null);
-  let [city, setCity] = useState(null);
-  let [uiCity, setuiCity] = useState(null);
-  let [icon, setIcon] = useState(null);
+  // const [temperature, setTemperature] = useState(null);
+  // const [description, setDescription] = useState(null);
+  // const [humidity, setHumidity] = useState(null);
+  const [weather, setWeather] = useState({});
+  const [city, setCity] = useState(null);
+  const [uiCity, setuiCity] = useState(null);
+  const [icon, setIcon] = useState(null);
 
   function showWeather(response) {
     console.log(response);
-    // all this should be in one object
-    setTemperature(response.data.main.temp);
-    setDescription(response.data.weather[0].description);
-    setHumidity(response.data.main.humidity);
+    setWeather({
+      temperature: response.data.main.temp,
+      tempMin: response.data.main.temp_min,
+      tempMax: response.data.main.temp_max,
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      windspeed: response.data.wind.speed,
+      // winddegree: response.data.wind.deg,
+    });
     setIcon(response.data.weather[0].icon);
   }
   function handleSumit(event) {
@@ -57,7 +63,7 @@ export default function Weather() {
             {/* {uiCity &&} is if statement && meaning if uiCity is "true" then render h2, !! important for some reason     */}
             <h6>Saturday, 22.10.2022</h6>
             <div className="temperature mt-4">
-              <span>{Math.round(temperature)}</span>
+              <span>{Math.round(weather.temperature)}</span>
               <span className="units">°C|F</span>
             </div>
           </div>
@@ -69,17 +75,19 @@ export default function Weather() {
               height={200}
             />
 
-            <p className="description">{description}</p>
+            <p className="description">{weather.description}</p>
           </div>
         </div>
       </div>
-      <div className="additionalWeatherInfo mt-5">
+      <div className="additionalWeatherInfo">
         <ul>
-          <li> Humidity: {humidity}% </li>
-          <li> Windspeed: 13 km/h </li>
-          <li> Wind degree </li>
-          <li> Temp min 5 </li>
-          <li> Temp max : 35 </li>
+          <li> Temp min: {Math.round(weather.tempMin)} °C </li>
+          <li> Temp max: {Math.round(weather.tempMax)} °C </li>
+        </ul>
+        <ul>
+          <li> Humidity: {weather.humidity}% </li>
+          <li> Windspeed: {weather.windspeed} km/h </li>
+          {/* <li> Wind degree: {weather.winddegree}° </li> */}
         </ul>
       </div>
       <span>
