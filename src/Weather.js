@@ -11,20 +11,18 @@ export default function Weather({ defaultCity }) {
 
   async function fetchAndStoreWeatherData(newCity) {
     setReady(false);
-    const apiKey = "f7577236b82e90879ca7e6c7b2f05c47";
+    const apiKey = "8c78e9e7e9928cd1a2a6f923072c3dec";
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
     // Data is fetched here
     const response = await axios.get(WeatherUrl);
     // console.log(response);
     const latitude = response.data.coord.lat;
     const longitude = response.data.coord.lon;
-    const ForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}&units=metric`;
+    const ForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}&units=metric`;
     const forecastResponse = await axios.get(ForecastUrl);
-    // const forcastResponse
-    // TODO
-    console.log(forecastResponse);
-    // Data is formatted here
+    // console.log(forecastResponse);
 
+    // Data is formatted here
     const formattedData = {
       temperature: response.data.main.temp,
       tempMin: response.data.main.temp_min,
@@ -33,7 +31,7 @@ export default function Weather({ defaultCity }) {
       humidity: response.data.main.humidity,
       windspeed: response.data.wind.speed,
       icon: response.data.weather[0].icon,
-      forecast: forecastResponse.data.list,
+      forecast: forecastResponse.data.daily,
     };
     // Data is set to state here
     setWeather(formattedData);
@@ -108,6 +106,7 @@ export default function Weather({ defaultCity }) {
           <li> Windspeed: {weather.windspeed} km/h </li>
         </ul>
       </div>
+      {/* data from forecast api is send to forecastcomponent here */}
       <Forecast forecastData={weather.forecast} />
       {/* contact link needs improvement still */}
     </div>
@@ -115,7 +114,6 @@ export default function Weather({ defaultCity }) {
 }
 
 // to do
-// add default city (conditional rendering)
 // add date
 // add forecast
 // move contactLink span to bottom. (centered?)
