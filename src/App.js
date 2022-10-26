@@ -1,14 +1,15 @@
+import "./App.css";
+import Weather from "./Weather";
+// import Forecast from "./Forecast";
 
-import './App.css';
-import Weather from "./Weather"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-     <Weather/> 
-    </div>
+        <Weather defaultCity="Berlin" />
+      </div>
     </div>
   );
 }

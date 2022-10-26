@@ -1,41 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Weather.css";
 import axios from "axios";
+import Forecast from "./Forecast";
 
-export default function Weather() {
-  // const [temperature, setTemperature] = useState(null);
-  // const [description, setDescription] = useState(null);
-  // const [humidity, setHumidity] = useState(null);
+export default function Weather({ defaultCity }) {
+  const [ready, setReady] = useState(false);
   const [weather, setWeather] = useState({});
-  const [city, setCity] = useState(null);
-  const [uiCity, setuiCity] = useState(null);
-  const [icon, setIcon] = useState(null);
+  const [city, setCity] = useState(defaultCity);
 
-  function showWeather(response) {
-    console.log(response);
-    setWeather({
+  async function fetchAndStoreWeatherData(newCity) {
+    setReady(false);
+    const apiKey = "f7577236b82e90879ca7e6c7b2f05c47";
+    const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
+    // Data is fetched here
+    const response = await axios.get(WeatherUrl);
+    // console.log(response);
+    const latitude = response.data.coord.lat;
+    const longitude = response.data.coord.lon;
+    const ForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}&units=metric`;
+    const forecastResponse = await axios.get(ForecastUrl);
+    // const forcastResponse
+    // TODO
+    console.log(forecastResponse);
+    // Data is formatted here
+
+    const formattedData = {
       temperature: response.data.main.temp,
       tempMin: response.data.main.temp_min,
       tempMax: response.data.main.temp_max,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       windspeed: response.data.wind.speed,
-      // winddegree: response.data.wind.deg,
-    });
-    setIcon(response.data.weather[0].icon);
+      icon: response.data.weather[0].icon,
+      forecast: forecastResponse.data.list,
+    };
+    // Data is set to state here
+    setWeather(formattedData);
+    setCity(newCity);
+    setReady(true);
   }
+
   function handleSumit(event) {
     event.preventDefault();
-    setuiCity(city);
-    const apiKey = "f7577236b82e90879ca7e6c7b2f05c47";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(url).then(showWeather);
+    const city = event.target.elements["city-input"].value;
+    fetchAndStoreWeatherData(city);
   }
-  function handleChange(event) {
-    event.preventDefault();
-    setCity(event.target.value);
-  }
+
+  // React use effect - https://reactjs.org/docs/hooks-effect.html, it is a standard
+  // react hook that allows you to interact with services (an api for instance) outside of your component
+  // the array at the end (brackets) are the pieces of data that the useEffect depends on. If they change,
+  // the effect will be called again
+  useEffect(() => {
+    fetchAndStoreWeatherData(city);
+  }, []);
 
   return (
     <div className="Weather">
@@ -44,7 +62,6 @@ export default function Weather() {
           <div className="row">
             <div className="col-9">
               <input
-                onChange={handleChange}
                 type="search"
                 placeholder="Enter city"
                 autoFocus="on"
@@ -57,27 +74,29 @@ export default function Weather() {
             </div>
           </div>
         </form>
-        <div className="row">
-          <div className="col-4 mt-5 d-flex leftPanel">
-            {!!uiCity && <h2>{uiCity}</h2>}
-            {/* {uiCity &&} is if statement && meaning if uiCity is "true" then render h2, !! important for some reason     */}
-            <h6>Saturday, 22.10.2022</h6>
-            <div className="temperature mt-4">
-              <span>{Math.round(weather.temperature)}</span>
-              <span className="units">°C|F</span>
+        {!ready ? (
+          <p>Loading..</p>
+        ) : (
+          // if ready is false render (loading..) else render whats in ()
+          <div className="row">
+            <div className="col-4 mt-5 d-flex leftPanel">
+              <h2>{city}</h2>
+              <h6>Saturday, 22.10.2022</h6>
+              <div className="temperature mt-4">
+                <span>{Math.round(weather.temperature)}</span>
+                <span className="units">°C|F</span>
+              </div>
+            </div>
+            <div className="col-8 d-flex rightPanel">
+              <img
+                src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+                alt="current weather icon"
+              />
+
+              <p className="description">{weather.description}</p>
             </div>
           </div>
-          <div className="col-8 d-flex rightPanel">
-            <img
-              src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-              alt="current weather icon"
-              // width={200}
-              // height={200}
-            />
-
-            <p className="description">{weather.description}</p>
-          </div>
-        </div>
+        )}
       </div>
       <div className="additionalWeatherInfo">
         <ul>
@@ -87,24 +106,16 @@ export default function Weather() {
         <ul>
           <li> Humidity: {weather.humidity}% </li>
           <li> Windspeed: {weather.windspeed} km/h </li>
-          {/* <li> Wind degree: {weather.winddegree}° </li> */}
         </ul>
       </div>
+      <Forecast forecastData={weather.forecast} />
       {/* contact link needs improvement still */}
-      <span className="contactLink">
-        {" "}
-        <a
-          href="https://github.com/aslopianka/weather-app-react"
-          target="-blank"
-        >
-          {" "}
-          openSourceCode{" "}
-        </a>{" "}
-        by{" "}
-        <a href="https://unrivaled-gaufre-1be69a.netlify.app" target="-blank">
-          Anna Slopianka
-        </a>{" "}
-      </span>
     </div>
   );
 }
+
+// to do
+// add default city (conditional rendering)
+// add date
+// add forecast
+// move contactLink span to bottom. (centered?)

@@ -70,7 +70,7 @@
 }
 
 @media only screen and (min-width: 800px) {
-  img {
+  .rightPanel img {
     height: 200px;
     width: 200px;
   }
