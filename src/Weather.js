@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./Weather.css";
 import axios from "axios";
 import Forecast from "./Forecast";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather({ defaultCity }) {
   const [ready, setReady] = useState(false);
@@ -15,7 +16,7 @@ export default function Weather({ defaultCity }) {
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
     // Data is fetched here
     const response = await axios.get(WeatherUrl);
-    // console.log(response);
+    // console.log(response.data.dt);
     const latitude = response.data.coord.lat;
     const longitude = response.data.coord.lon;
     const ForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}&units=metric`;
@@ -24,6 +25,7 @@ export default function Weather({ defaultCity }) {
 
     // Data is formatted here
     const formattedData = {
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       tempMin: response.data.main.temp_min,
       tempMax: response.data.main.temp_max,
@@ -33,6 +35,7 @@ export default function Weather({ defaultCity }) {
       icon: response.data.weather[0].icon,
       forecast: forecastResponse.data.daily,
     };
+
     // Data is set to state here
     setWeather(formattedData);
     setCity(newCity);
@@ -79,7 +82,10 @@ export default function Weather({ defaultCity }) {
           <div className="row">
             <div className="col-4 mt-5 d-flex leftPanel">
               <h2>{city}</h2>
-              <h6>Saturday, 22.10.2022</h6>
+              <h6>
+                {" "}
+                <FormattedDate currentDate={weather.date} />{" "}
+              </h6>
               <div className="temperature mt-4">
                 <span>{Math.round(weather.temperature)}</span>
                 <span className="units">°C|F</span>
