@@ -51,7 +51,7 @@
 }
 
 .Weather ul {
-  padding-top: 20px;
+  padding-top: 15px;
   list-style-type: none;
   text-align: center;
   line-height: 3;
@@ -59,13 +59,13 @@
 }
 
 .additionalWeatherInfo {
-  margin-top: 70px;
+  margin-top: 40px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.contactLink a {
+.Weather a {
   color: #424b5a;
 }
 

@@ -1,6 +1,7 @@
 .forecastBox {
-  border: 1px solid black;
+  border: 1px solid #dedede;
   border-radius: 5px;
+  box-shadow: 8px 12px 12px -1px #dedede;
   padding: 25px;
   margin-top: 30px;
 }
@@ -8,9 +9,3 @@
 .forecastBox li p {
   font-size: 10px;
 }
-/* 
-.Forecast ul {
-  text-decoration: none;
-  font-size: 13px;
-  line-height: 1;
-} */

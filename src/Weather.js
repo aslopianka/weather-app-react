@@ -4,6 +4,7 @@ import "./Weather.css";
 import axios from "axios";
 import Forecast from "./Forecast";
 import FormattedDate from "./FormattedDate";
+import TemperatureConversion from "./TemperatureConversion";
 
 export default function Weather({ defaultCity }) {
   const [ready, setReady] = useState(false);
@@ -87,8 +88,7 @@ export default function Weather({ defaultCity }) {
                 <FormattedDate currentDate={weather.date} />{" "}
               </h6>
               <div className="temperature mt-4">
-                <span>{Math.round(weather.temperature)}</span>
-                <span className="units">°C|F</span>
+                <TemperatureConversion celsiusTemp={weather.temperature} />
               </div>
             </div>
             <div className="col-8 d-flex rightPanel">
