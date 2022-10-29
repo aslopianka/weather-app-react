@@ -9,10 +9,10 @@ export default function Forecast({ forecastData }) {
         <ul className="row">
           <li className="col-2">
             {/* this all needs to be in new component that maps through forecastData */}
-            <img
+            {/* <img
               src={`http://openweathermap.org/img/wn/${forecastData[0].weather[0].icon}@2x.png`}
               alt="current weather icon"
-            />
+            /> */}
           </li>
           <li className="col-2"></li>
           <li className="col-2"></li>
