@@ -55,7 +55,7 @@ export default function Weather({ defaultCity }) {
   // the effect will be called again
   useEffect(() => {
     fetchAndStoreWeatherData(city);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="Weather">
