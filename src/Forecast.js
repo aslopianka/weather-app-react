@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Forecast.css";
 
 export default function Forecast({ forecastData }) {
@@ -28,9 +28,8 @@ export default function Forecast({ forecastData }) {
   );
 }
 
-{
-  /* {forecastData.map((item) => { */
-}
+/* {forecastData.map((item) => { */
+
 // return (
 //   <ForecastDay
 //     maxTemp={item.main.temp_max}
