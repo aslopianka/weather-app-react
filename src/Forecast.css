@@ -6,6 +6,8 @@
   margin-top: 30px;
 }
 
-.forecastBox li p {
-  font-size: 10px;
+.forecastBox ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
 }

@@ -2,12 +2,22 @@ import React from "react";
 import "./Forecast.css";
 
 export default function Forecast({ forecastData }) {
+  console.log(forecastData);
   return (
     <div className="Forecast">
       <div className="forecastBox">
         <ul className="row">
-          <li>Monday</li>
-          <li>Tuesday</li>
+          <li className="col-2">
+            {/* this all needs to be in new component that maps through forecastData */}
+            <img
+              src={`http://openweathermap.org/img/wn/${forecastData[0].weather[0].icon}@2x.png`}
+              alt="current weather icon"
+            />
+          </li>
+          <li className="col-2"></li>
+          <li className="col-2"></li>
+          <li className="col-2"></li>
+          <li className="col-2"></li>
         </ul>
       </div>
       <span className="contactLink">
@@ -47,9 +57,6 @@ export default function Forecast({ forecastData }) {
 //   weatherDescription,
 //   timestamp,
 // }) {
-//   // Figure out how to return days as your increment for the forecast, rather than every three hours -DONE
-//   // Then you need to figure out how to construct a date object that represents the correct day, and get the day out of it
-//   console.log(timestamp);
 //   const dateObject = new Date(timestamp);
 //   console.log(dateObject);
 //   // const day = new Date(timestamp) get Day()
@@ -67,6 +74,3 @@ export default function Forecast({ forecastData }) {
 //     </li>
 //   );
 // }
-
-// // I want Forecast component to run when Weather has been updated
-// // how can I make these components "communicate" ?
