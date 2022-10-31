@@ -34,7 +34,7 @@ export default function Weather({ defaultCity }) {
       humidity: response.data.main.humidity,
       windspeed: response.data.wind.speed,
       icon: response.data.weather[0].icon,
-      forecast: forecastResponse.data.daily,
+      forecast: forecastResponse.data.daily.slice(1, 6),
     };
 
     // Data is set to state here
@@ -76,10 +76,10 @@ export default function Weather({ defaultCity }) {
             </div>
           </div>
         </form>
+        {/* if (=?) ready (=condition) is false (=!) render (loading..) else (=:) render ()*/}
         {!ready ? (
           <p>Loading..</p>
         ) : (
-          // if ready is false render (loading..) else render whats in ()
           <div className="row">
             <div className="col-4 mt-5 d-flex leftPanel">
               <h2>{city}</h2>
@@ -102,24 +102,24 @@ export default function Weather({ defaultCity }) {
           </div>
         )}
       </div>
-      <div className="additionalWeatherInfo">
-        <ul>
-          <li> Temp min: {Math.round(weather.tempMin)} °C </li>
-          <li> Temp max: {Math.round(weather.tempMax)} °C </li>
-        </ul>
-        <ul>
-          <li> Humidity: {weather.humidity}% </li>
-          <li> Windspeed: {weather.windspeed} km/h </li>
-        </ul>
-      </div>
-      {/* data from forecast api is send to forecastcomponent here */}
-      <Forecast forecastData={weather.forecast} />
-      {/* contact link needs improvement still */}
+      {/* if ready is true then render what is in () (= condition &&) 
+      second if condition (1. in line 80) needed here because otherwise the 
+      layout of page would have changed when rendering "loading.." */}
+      {ready && (
+        <>
+          <div className="additionalWeatherInfo">
+            <ul>
+              <li> Temp min: {Math.round(weather.tempMin)} °C </li>
+              <li> Temp max: {Math.round(weather.tempMax)} °C </li>
+            </ul>
+            <ul>
+              <li> Humidity: {weather.humidity}% </li>
+              <li> Windspeed: {weather.windspeed} km/h </li>
+            </ul>
+          </div>
+          <Forecast forecastData={weather.forecast} />
+        </>
+      )}
     </div>
   );
 }
-
-// to do
-// add date
-// add forecast
-// move contactLink span to bottom. (centered?)

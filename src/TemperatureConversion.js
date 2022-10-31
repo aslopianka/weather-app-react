@@ -26,7 +26,7 @@ export default function TemperatureConversion({ celsiusTemp }) {
       </div>
     );
   } else {
-    let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+    const fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
     return (
       <div className="TemperatureConversion">
         <span>{Math.round(fahrenheitTemp)}</span>

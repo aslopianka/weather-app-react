@@ -11,3 +11,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.forecastDay {
+  flex-direction: column;
+  align-content: space-between;
+}

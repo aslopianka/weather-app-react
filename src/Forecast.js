@@ -1,23 +1,25 @@
 import React from "react";
 import "./Forecast.css";
+import { getDayOfWeek } from "./FormattedDate";
 
 export default function Forecast({ forecastData }) {
-  console.log(forecastData);
   return (
     <div className="Forecast">
       <div className="forecastBox">
         <ul className="row">
-          <li className="col-2">
-            {/* this all needs to be in new component that maps through forecastData */}
-            {/* <img
-              src={`http://openweathermap.org/img/wn/${forecastData[0].weather[0].icon}@2x.png`}
-              alt="current weather icon"
-            /> */}
-          </li>
-          <li className="col-2"></li>
-          <li className="col-2"></li>
-          <li className="col-2"></li>
-          <li className="col-2"></li>
+          {/* for each item in array run function */}
+          {forecastData.map((item) => {
+            // console.log(item);
+            return (
+              <ForecastDay
+                maxTemp={item.temp.max}
+                minTemp={item.temp.min}
+                icon={item.weather[0].icon}
+                weatherDescription={item.weather[0].description}
+                timestamp={item.dt}
+              />
+            );
+          })}
         </ul>
       </div>
       <span className="contactLink">
@@ -38,39 +40,30 @@ export default function Forecast({ forecastData }) {
   );
 }
 
-/* {forecastData.map((item) => { */
-
-// return (
-//   <ForecastDay
-//     maxTemp={item.main.temp_max}
-//     minTemp={item.main.temp_max}
-//     icon={item.weather[0].icon}
-//     weatherDescription={item.weather[0].description}
-//     timestamp={item.dt}
-//   />
-// );
-//           })}
-// function ForecastDay({
-//   maxTemp,
-//   minTemp,
-//   icon,
-//   weatherDescription,
-//   timestamp,
-// }) {
-//   const dateObject = new Date(timestamp);
-//   console.log(dateObject);
-//   // const day = new Date(timestamp) get Day()
-//   return (
-//     <li className="col-2">
-//       {" "}
-//       <img
-//         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-//         alt="forecast icon"
-//         width={100}
-//         height={100}
-//       ></img>
-//       <p>{weatherDescription}</p>
-//       {Math.round(minTemp)}/{Math.round(maxTemp)}
-//     </li>
-//   );
-// }
+function ForecastDay({
+  maxTemp,
+  minTemp,
+  icon,
+  weatherDescription,
+  timestamp,
+}) {
+  const forecastDate = new Date(timestamp * 1000);
+  const uiForecastDay = getDayOfWeek(forecastDate);
+  return (
+    <li className="col-2">
+      <div className="d-flex forecastDay">
+        {uiForecastDay}
+        <img
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="forecast icon"
+          width={100}
+          height={100}
+        ></img>
+        <p>{weatherDescription}</p>
+        <p>
+          {Math.round(minTemp)}/{Math.round(maxTemp)}°C
+        </p>
+      </div>
+    </li>
+  );
+}
