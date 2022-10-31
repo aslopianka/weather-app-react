@@ -50,9 +50,9 @@ function ForecastDay({
   const forecastDate = new Date(timestamp * 1000);
   const uiForecastDay = getDayOfWeek(forecastDate);
   return (
-    <li className="col-2">
+    <li className="col-sm-2">
       <div className="d-flex forecastDay">
-        {uiForecastDay}
+        <strong>{uiForecastDay} </strong>
         <img
           src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
           alt="forecast icon"

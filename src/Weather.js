@@ -17,12 +17,11 @@ export default function Weather({ defaultCity }) {
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
     // Data is fetched here
     const response = await axios.get(WeatherUrl);
-    // console.log(response.data.dt);
+
     const latitude = response.data.coord.lat;
     const longitude = response.data.coord.lon;
     const ForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}&units=metric`;
     const forecastResponse = await axios.get(ForecastUrl);
-    // console.log(forecastResponse);
 
     // Data is formatted here
     const formattedData = {
@@ -81,7 +80,7 @@ export default function Weather({ defaultCity }) {
           <p>Loading..</p>
         ) : (
           <div className="row">
-            <div className="col-4 mt-5 d-flex leftPanel">
+            <div className="col-sm-4 mt-5 d-flex leftPanel">
               <h2>{city}</h2>
               <h6>
                 {" "}
@@ -91,7 +90,7 @@ export default function Weather({ defaultCity }) {
                 <TemperatureConversion celsiusTemp={weather.temperature} />
               </div>
             </div>
-            <div className="col-8 d-flex rightPanel">
+            <div className="col-sm-8 d-flex rightPanel">
               <img
                 src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
                 alt="current weather icon"
