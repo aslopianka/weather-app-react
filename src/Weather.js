@@ -13,6 +13,7 @@ export default function Weather({ defaultCity }) {
 
   async function fetchAndStoreWeatherData(newCity) {
     setReady(false);
+    // This is a read-only key
     const apiKey = "8c78e9e7e9928cd1a2a6f923072c3dec";
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
     // Data is fetched here
