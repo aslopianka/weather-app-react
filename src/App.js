@@ -1,6 +1,5 @@
 import "./App.css";
 import Weather from "./Weather";
-// import Forecast from "./Forecast";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 

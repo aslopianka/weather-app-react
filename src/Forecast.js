@@ -9,7 +9,6 @@ export default function Forecast({ forecastData }) {
         <ul className="row">
           {/* for each item in array run function */}
           {forecastData.map((item) => {
-            // console.log(item);
             return (
               <ForecastDay
                 maxTemp={item.temp.max}
