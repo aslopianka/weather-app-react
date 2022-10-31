@@ -1,4 +1,4 @@
-Weather App build with React
+Weather App built with React
 
 This App fetches weather data from OpenWeather API for current weather as well as for a 5 day forecast.
 
