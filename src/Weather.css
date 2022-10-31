@@ -68,7 +68,7 @@
 .Weather a {
   color: #424b5a;
 }
-
+/* responsiveness  */
 @media only screen and (min-width: 800px) {
   .rightPanel img {
     height: 200px;
