@@ -5,7 +5,9 @@
   box-shadow: 8px 12px 12px -1px #dedede;
   padding: 25px;
 }
-
+.spacing {
+  margin: auto;
+}
 .leftPanel {
   flex-direction: column;
   align-content: center;
@@ -87,8 +89,5 @@
   .rightPanel img {
     width: 150px;
     height: 150px;
-  }
-  .spacing {
-    margin: auto;
   }
 }
