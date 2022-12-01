@@ -77,6 +77,7 @@
 }
 
 @media only screen and (max-width: 800px) {
+  /* for small screens */
   .Weather ul {
     line-height: 2;
   }
@@ -86,5 +87,8 @@
   .rightPanel img {
     width: 150px;
     height: 150px;
+  }
+  .spacing {
+    margin: auto;
   }
 }

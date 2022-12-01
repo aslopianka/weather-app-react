@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import "./Weather.css";
-import axios from "axios";
-import Forecast from "./Forecast";
-import FormattedDate from "./FormattedDate";
-import TemperatureConversion from "./TemperatureConversion";
+import './Weather.css';
+import axios from 'axios';
+import Forecast from './Forecast';
+import FormattedDate from './FormattedDate';
+import TemperatureConversion from './TemperatureConversion';
 
 export default function Weather({ defaultCity }) {
   const [ready, setReady] = useState(false);
@@ -14,7 +14,7 @@ export default function Weather({ defaultCity }) {
   async function fetchAndStoreWeatherData(newCity) {
     setReady(false);
     // This is a read-only key
-    const apiKey = "8c78e9e7e9928cd1a2a6f923072c3dec";
+    const apiKey = '8c78e9e7e9928cd1a2a6f923072c3dec';
     const WeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
     // Data is fetched here
     const response = await axios.get(WeatherUrl);
@@ -45,7 +45,7 @@ export default function Weather({ defaultCity }) {
 
   function handleSumit(event) {
     event.preventDefault();
-    const city = event.target.elements["city-input"].value;
+    const city = event.target.elements['city-input'].value;
     fetchAndStoreWeatherData(city);
   }
 
@@ -58,21 +58,21 @@ export default function Weather({ defaultCity }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="Weather">
-      <div className="box">
+    <div className='Weather'>
+      <div className='box'>
         <form onSubmit={handleSumit}>
-          <div className="row">
-            <div className="col-9">
+          <div className='row spacing'>
+            <div className='col-9'>
               <input
-                type="search"
-                placeholder="Enter city"
-                autoFocus="on"
-                id="city-input"
-                className="form-control"
+                type='search'
+                placeholder='Enter city'
+                autoFocus='on'
+                id='city-input'
+                className='form-control'
               />
             </div>
-            <div className="col-3">
-              <input type="submit" value="Search" className="btn btn-primary" />
+            <div className='col-3'>
+              <input type='submit' value='Search' className='btn btn-primary' />
             </div>
           </div>
         </form>
@@ -80,24 +80,24 @@ export default function Weather({ defaultCity }) {
         {!ready ? (
           <p>Loading..</p>
         ) : (
-          <div className="row">
-            <div className="col-sm-4 mt-5 d-flex leftPanel">
+          <div className='row'>
+            <div className='col-sm-4 mt-5 d-flex leftPanel'>
               <h2>{city}</h2>
               <h6>
-                {" "}
-                <FormattedDate currentDate={weather.date} />{" "}
+                {' '}
+                <FormattedDate currentDate={weather.date} />{' '}
               </h6>
-              <div className="temperature mt-4">
+              <div className='temperature mt-4'>
                 <TemperatureConversion celsiusTemp={weather.temperature} />
               </div>
             </div>
-            <div className="col-sm-8 d-flex rightPanel">
+            <div className='col-sm-8 d-flex rightPanel'>
               <img
                 src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-                alt="current weather icon"
+                alt='current weather icon'
               />
 
-              <p className="description">{weather.description}</p>
+              <p className='description'>{weather.description}</p>
             </div>
           </div>
         )}
@@ -107,7 +107,7 @@ export default function Weather({ defaultCity }) {
       layout of page would have changed when rendering "loading.." */}
       {ready && (
         <>
-          <div className="additionalWeatherInfo">
+          <div className='additionalWeatherInfo'>
             <ul>
               <li> Temp min: {Math.round(weather.tempMin)} °C </li>
               <li> Temp max: {Math.round(weather.tempMax)} °C </li>
