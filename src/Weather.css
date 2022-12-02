@@ -72,6 +72,7 @@
 }
 /* responsiveness  */
 @media only screen and (min-width: 800px) {
+  /* for large screens */
   .rightPanel img {
     height: 200px;
     width: 200px;
@@ -80,6 +81,10 @@
 
 @media only screen and (max-width: 800px) {
   /* for small screens */
+  .box {
+    max-width: 100%;
+    padding: 5px;
+  }
   .Weather ul {
     line-height: 2;
   }
@@ -89,5 +94,11 @@
   .rightPanel img {
     width: 150px;
     height: 150px;
+  }
+  .spacing-9 {
+    width: 70% !important;
+  }
+  .spacing-3 {
+    width: 30% !important;
   }
 }

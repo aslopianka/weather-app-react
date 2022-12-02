@@ -62,7 +62,7 @@ export default function Weather({ defaultCity }) {
       <div className='box'>
         <form onSubmit={handleSumit}>
           <div className='row spacing'>
-            <div className='col-9'>
+            <div className='col-9 spacing-9'>
               <input
                 type='search'
                 placeholder='Enter city'
@@ -71,8 +71,12 @@ export default function Weather({ defaultCity }) {
                 className='form-control'
               />
             </div>
-            <div className='col-3'>
-              <input type='submit' value='Search' className='btn btn-primary' />
+            <div className='col-3 spacing-3'>
+              <input
+                type='submit'
+                value='Search'
+                className=' form-control btn btn-primary'
+              />
             </div>
           </div>
         </form>
