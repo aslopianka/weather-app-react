@@ -87,6 +87,7 @@
   }
   .Weather ul {
     line-height: 2;
+    padding-left: 0px;
   }
   .additionalWeatherInfo {
     display: block;
