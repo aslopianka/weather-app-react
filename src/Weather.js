@@ -4,12 +4,13 @@ import './Weather.css';
 import axios from 'axios';
 import Forecast from './Forecast';
 import FormattedDate from './FormattedDate';
-import TemperatureConversion from './TemperatureConversion';
+import convertTemperature from './convertTemperature';
 
 export default function Weather({ defaultCity }) {
   const [ready, setReady] = useState(false);
   const [weather, setWeather] = useState({});
   const [city, setCity] = useState(defaultCity);
+  const [unit, setUnit] = useState('celsius');
 
   async function fetchAndStoreWeatherData(newCity) {
     setReady(false);
@@ -48,7 +49,15 @@ export default function Weather({ defaultCity }) {
     const city = event.target.elements['city-input'].value;
     fetchAndStoreWeatherData(city);
   }
+  function showFahrenheit(event) {
+    event.preventDefault();
+    setUnit('fahrenheit');
+  }
 
+  function showCelsius(event) {
+    event.preventDefault();
+    setUnit('celsius');
+  }
   // React use effect - https://reactjs.org/docs/hooks-effect.html, it is a standard
   // react hook that allows you to interact with services (an api for instance) outside of your component
   // the array at the end (brackets) are the pieces of data that the useEffect depends on. If they change,
@@ -92,7 +101,20 @@ export default function Weather({ defaultCity }) {
                 <FormattedDate currentDate={weather.date} />{' '}
               </h6>
               <div className='temperature mt-4'>
-                <TemperatureConversion celsiusTemp={weather.temperature} />
+                <span className='units'>
+                  <a href='/' onClick={showCelsius}>
+                    °C |
+                  </a>
+                  <a href='/' onClick={showFahrenheit}>
+                    °F{' '}
+                  </a>
+                </span>
+                <span>
+                  {convertTemperature({
+                    celsiusTemp: weather.temperature,
+                    unit,
+                  })}
+                </span>
               </div>
             </div>
             <div className='col-sm-8 d-flex rightPanel'>
@@ -113,15 +135,35 @@ export default function Weather({ defaultCity }) {
         <>
           <div className='additionalWeatherInfo'>
             <ul>
-              <li> Temp min: {Math.round(weather.tempMin)} °C </li>
-              <li> Temp max: {Math.round(weather.tempMax)} °C </li>
+              <li>
+                {' '}
+                Temp min:{' '}
+                {convertTemperature({
+                  celsiusTemp: weather.tempMin,
+                  unit: unit,
+                })}{' '}
+                {unit === 'celsius' ? '°C' : '°F'}
+              </li>
+              <li>
+                {' '}
+                Temp max:{' '}
+                {convertTemperature({
+                  celsiusTemp: weather.tempMax,
+                  unit: unit,
+                })}{' '}
+                {unit === 'celsius' ? '°C' : '°F'}
+              </li>
             </ul>
             <ul>
               <li> Humidity: {weather.humidity}% </li>
               <li> Windspeed: {weather.windspeed} km/h </li>
             </ul>
           </div>
-          <Forecast forecastData={weather.forecast} />
+          <Forecast
+            forecastData={weather.forecast}
+            unit={unit}
+            setUnit={setUnit}
+          />
         </>
       )}
     </div>
