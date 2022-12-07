@@ -101,6 +101,12 @@ export default function Weather({ defaultCity }) {
                 <FormattedDate currentDate={weather.date} />{' '}
               </h6>
               <div className='temperature mt-4'>
+                <span className='temperatureString'>
+                  {convertTemperature({
+                    celsiusTemp: weather.temperature,
+                    unit,
+                  })}
+                </span>
                 <span className='units'>
                   <a href='/' onClick={showCelsius}>
                     °C |
@@ -108,12 +114,6 @@ export default function Weather({ defaultCity }) {
                   <a href='/' onClick={showFahrenheit}>
                     °F{' '}
                   </a>
-                </span>
-                <span>
-                  {convertTemperature({
-                    celsiusTemp: weather.temperature,
-                    unit,
-                  })}
                 </span>
               </div>
             </div>
